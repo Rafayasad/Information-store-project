@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./index.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <h1>INFO store program</h1>
+    <fieldset>
+        <legend> Information of user </legend>
+        <input type="text" id="inpkey" placeholder="Enter a key..">
+        <input type="text" id="inpvalue" placeholder="Enter a value..">
+        <button type="button" id="butt">Insert INFO</button>
+        <button type="button" id="butts">Clear all INFO</button>
+    </fieldset>
+    <fieldset>
+        <legend>Local Storage Results</legend>
+        <div id="output"></div>
+    </fieldset>
+
+    <script>
+        const input = document.getElementById("inpkey");
+        const inputval = document.getElementById("inpvalue");
+        const buttt = document.getElementById("butt");
+        const buttts = document.getElementById("butts");
+        const result= document.getElementById("output");
+
+        butt.onclick = function ()
+        {
+            const key = inpkey.value;
+            const value = inpvalue.value;
+
+            console.log(key);
+            console.log(value);
+            
+            if(key && value)
+            {
+                localStorage.setItem(key,value);
+                location.reload();
+            }
+        }
+        butts.onclick = function ()
+        {
+                localStorage.clear();
+                location.reload(); 
+        }
+
+        for(let i=0 ; i<localStorage.length; i++)
+        {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+
+            output.innerHTML += `${key} : ${value} <br />`;
+        }
+    </script>
+</body>
+</html>
